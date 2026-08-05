@@ -11,6 +11,8 @@ import numpy as np
 import gemmi
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 @dataclasses.dataclass
 class ResID:
