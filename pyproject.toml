@@ -2,7 +2,6 @@
 requires = ["setuptools>=64", "setuptools_scm[toml]>=6.2", "wheel"]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 name = "OpenbindInitialRefiniment"
 authors = [{name = "Conor F Wild", email = "c.wild@diamond.ac.uk"}]
@@ -14,3 +13,6 @@ dependencies = [
     'gemmi'
  ]
 dynamic = ["version"]
+license.file = "LICENSE"
+readme = "README.md"
+requires-python = ">=3.9"
