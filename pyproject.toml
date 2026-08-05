@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "openbind_initial_refinement"
 authors = [{name = "Conor F Wild", email = "c.wild@diamond.ac.uk"}]
-dynamic = ["version", "description"]
+dynamic = ["version"]
 dependencies = [
     "numpy",
     "scipy",
