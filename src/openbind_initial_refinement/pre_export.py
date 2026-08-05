@@ -403,7 +403,7 @@ def main(pandda_dataset_dir):
             mapin=recalculated_event_map_path,
             dictin=ligand_cif_path,
             pdbout=output_pdb_path,
-            resid=ligand_resid.seqid,
+            resid=ligand_resid,
             intermediary_st_path=intermediary_st_path
         )
 
