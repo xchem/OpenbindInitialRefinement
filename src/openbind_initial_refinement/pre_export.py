@@ -231,7 +231,7 @@ def remove_ground_state_ligands(pdbin, output_path):
     return output_path
 
 
-def get_residue_sequences_around_ligand(st_path, res, radius=10.0):
+def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
     # Break up the residues in a radius around ligand into continuous subsequences
 
     st = gemmi.read_structure(str(st_path))
@@ -243,10 +243,10 @@ def get_residue_sequences_around_ligand(st_path, res, radius=10.0):
     resids = {}
     for model in st:
         for chain in model:
-            if chain.name != res.chain:
+            if chain.name != resid.chain:
                 continue
             for res in chain:
-                if str(res.seqid.num) != res.seqid:
+                if str(res.seqid.num) != resid.seqid:
                     continue
                 for atom in res:
                     neighbours = ns.find_neighbors(atom, min_dist=0.1, max_dist=radius)
