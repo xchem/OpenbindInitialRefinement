@@ -94,7 +94,7 @@ def get_ligand_resids(pandda_model_path):
 
 def backup_pandda_model(pandda_model_path, backup_path):
     if backup_path.exists():
-        raise Exception(f'Already have a backup: not safe to proceed as may delete data!')
+        raise Exception(f'Already have a backup at {backup_path}: not safe to proceed as may delete data!')
     shutil.copyfile(pandda_model_path, backup_path)
     return backup_path
 
