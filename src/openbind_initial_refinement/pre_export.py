@@ -231,8 +231,10 @@ def remove_ground_state_ligands(pdbin, output_path):
     return output_path
 
 
-def get_residue_sequences_around_ligand(st, res, radius=10.0):
+def get_residue_sequences_around_ligand(st_path, res, radius=10.0):
     # Break up the residues in a radius around ligand into continuous subsequences
+
+    st = gemmi.read_structure(str(st_path))
 
     # Neighbour search
     ns = gemmi.NeighborSearch(st[0], st.cell, 5)
