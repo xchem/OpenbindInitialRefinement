@@ -223,6 +223,8 @@ def remove_ground_state_ligands(pdbin, output_path):
                         ResID(chain.name, str(res.seqid.num))
                     )
 
+    logger.info(f'Dropping residues: {atoms_to_drop}')
+
     # Drop atoms
     new_st = drop_atoms(st, atoms_to_drop)
 
