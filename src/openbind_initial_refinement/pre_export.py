@@ -353,7 +353,7 @@ def main(pandda_dataset_dir):
 
     # Get ligand resids
     ligand_resids = get_ligand_resids(pandda_model_path)
-    logger.info(f'Ligand Resids: {ligand_resid}')
+    logger.info(f'Ligand Resids: {ligand_resids}')
 
 
     # Refine around each ligand
