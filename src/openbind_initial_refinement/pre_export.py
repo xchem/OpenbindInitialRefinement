@@ -87,7 +87,7 @@ def get_ligand_resids(pandda_model_path):
             for res in chain:
                 if res.name in ['LIG', "XXX"]:
                     ligand_resids.append(
-                        ResID(chain.name, res.seqid.num)
+                        ResID(chain.name, str(res.seqid.num))
                     )
     return ligand_resids
 
@@ -116,7 +116,7 @@ def get_ligand_centroid(st_path, ligand_resid):
                     )
                 return centroid
 
-    raise Exception(f'No ligand gound at {ligand_resid.chain}/{ligand_resid.seqid} in {st_path}')
+    raise Exception(f'No ligand found at {ligand_resid.chain}/{ligand_resid.seqid} in {st_path}')
 
 def get_dist(ligand_centroid, centroid):
     return np.linalg.norm(np.array(ligand_centroid) - np.array(centroid))
