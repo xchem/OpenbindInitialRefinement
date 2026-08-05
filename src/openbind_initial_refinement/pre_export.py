@@ -257,6 +257,8 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
                         if seqid == res.seqid:
                             continue
                         resids[(chain_name, seqid)] = ResID(chain_name, seqid)
+    logger.info(f'Resids near ligand: {[x for x in resids.values()]}')
+
 
     # mask each chain, extract continuous runs
     subsequences = []
