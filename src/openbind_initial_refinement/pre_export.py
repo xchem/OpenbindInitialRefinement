@@ -227,7 +227,7 @@ def remove_ground_state_ligands(pdbin, output_path):
     new_st = drop_atoms(st, atoms_to_drop)
 
     # Write
-    new_st.write_pdb(str(output_path))
+    new_st.write_minimal_pdb(str(output_path))
 
     return output_path
 
@@ -238,7 +238,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
     st = gemmi.read_structure(str(st_path))
 
     # Neighbour search
-    ns = gemmi.NeighborSearch(st[0], st.cell, 5)
+    ns = gemmi.NeighborSearch(st[0], st.cell, radius)
 
     # For ligand atom get nearby atom resids
     resids = {}
@@ -249,6 +249,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
             for res in chain:
                 if str(res.seqid.num) != resid.seqid:
                     continue
+                print(f'Looping over ligand atoms...')
                 for atom in res:
                     neighbours = ns.find_neighbors(atom, min_dist=0.1, max_dist=radius)
                     for mark in neighbours:
