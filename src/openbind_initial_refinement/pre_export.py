@@ -116,7 +116,7 @@ def get_ligand_centroid(st_path, ligand_resid):
                     poss.append([pos.x, pos.y, pos.z])
                 centroid = np.mean(
                     poss,
-                    axis=-1
+                    axis=0
                     )
                 return centroid
 
