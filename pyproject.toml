@@ -3,7 +3,7 @@ requires = ["setuptools>=64", "setuptools_scm[toml]>=6.2", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "OpenbindInitialRefiniment"
+name = "openbind_initial_refinement"
 authors = [{name = "Conor F Wild", email = "c.wild@diamond.ac.uk"}]
 dynamic = ["version", "description"]
 dependencies = [
