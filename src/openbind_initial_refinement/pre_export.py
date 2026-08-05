@@ -361,9 +361,9 @@ def main(pandda_dataset_dir):
         logger.info(f'Processing ligandid: {ligand_resid}')
 
         # Make a model backup
-        backup_path = pandda_dataset_dir / C.modelled_st_dir / C.backup_st_path
-        logger.info(f'Backing up {pandda_model_path} to {backup_path}')
-        backup_pandda_model(pandda_model_path, backup_path)
+        # backup_path = pandda_dataset_dir / C.modelled_st_dir / C.backup_st_path
+        # logger.info(f'Backing up {pandda_model_path} to {backup_path}')
+        # backup_pandda_model(pandda_model_path, backup_path)
 
         # Get ligand key and event id
         closest_event, event_map_path, ligand_key = get_closest_event(
