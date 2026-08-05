@@ -49,6 +49,7 @@ class Constants:
     key_centroid = 'Centroid'
     key_build = 'Build'
     key_ligand_id = 'Ligand Key'
+    compound_dir = 'ligand_files'
     resnames_to_ignore = [
         'LIG',
         'XXX',
