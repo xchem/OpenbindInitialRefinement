@@ -143,7 +143,7 @@ def get_closest_event(st_path, ligand_resid, pandda_dataset_dir):
     clostest_event = min(dists, key=lambda _x: dists[_x])
     closest_event_map_path = pandda_dataset_dir / C.event_map_file_pattern.format(
         dtag=pandda_dataset_dir.parts[-1], 
-        event_id=clostest_event, 
+        event_idx=clostest_event, 
         bdc=round(1-meta[clostest_event][C.key_bdc]),
         )
     clostest_event_build_key = meta[clostest_event][C.key_build][C.key_ligand_id]
