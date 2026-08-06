@@ -406,8 +406,14 @@ def main(pandda_dataset_dir):
         else:
             pdbin = pandda_model_path
         intermediary_st_path = pandda_dataset_dir / C.modelled_st_dir / C.intermediary_pdb_file
-        os.remove(intermediary_st_path)
-        os.remove(output_pdb_path)
+        try:
+            os.remove(intermediary_st_path, )
+        except:
+            ...
+        try:
+            os.remove(output_pdb_path)
+        except:
+            ...
         logger.info(f'Refining {pdbin} to {output_pdb_path}')
         run_real_space_refine(
             pdbin=pdbin,
