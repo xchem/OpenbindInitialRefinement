@@ -102,15 +102,18 @@ def main(path):
     # 
     path = path.Pathlib(path)
     dataset = read_dataset_from_dir(path)
+    logger.info(f'Got dataset in {path}')
 
     # Get rid of weak waters with findwaters
     desolv_path = path / f'refine_desolv.pdb'
-    new_structure_path = remove_weak_waters(dataset, desolv_path)
+    remove_weak_waters(dataset, desolv_path)
+    logger.info(f'Wrote st w/o weak water to {desolv_path}')
 
     # Do an initial reciprocal refinement
     refined_pdb_path = path / 'autorefine.pdb'
     refined_mtz_path = path / 'autorefine.mtz'
     new_structure_path = reciprocal_space_refinement(desolv_path, refined_pdb_path, refined_mtz_path)
+    logger.info(f'Refined pdb/mtz to {refined_pdb_path}/{refined_mtz_path}')
 
     # Check for bad density with gemmi.blobs
     density_fit_stats = get_density_fit_stats(new_structure_path)
