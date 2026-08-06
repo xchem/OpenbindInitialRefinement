@@ -152,15 +152,15 @@ def get_closest_event(st_path, ligand_resid, pandda_dataset_dir):
         )
     clostest_event_build_key = meta[clostest_event][C.key_build][C.key_ligand_id]
 
-    return clostest_event, closest_event_map_path, clostest_event_build_key
+    return clostest_event, closest_event_map_path, clostest_event_build_key, meta[clostest_event][C.key_bdc]
 
 
-def recalculate_event_map(event_map_path, xmap_path, mean_map_path):
+def recalculate_event_map(event_map_path, xmap_path, mean_map_path, bdc):
     name = event_map_path.name
-    bdc = float(re.search(
-        r'1-BDC_([^_]+)',
-        name,
-    )[1])
+    # bdc = float(re.search(
+    #     r'1-BDC_([^_]+)',
+    #     name,
+    # )[1])
 
     logger.info(f'Got BDC: {bdc}')
  
@@ -378,7 +378,7 @@ def main(pandda_dataset_dir):
         # backup_pandda_model(pandda_model_path, backup_path)
 
         # Get ligand key and event id
-        closest_event, event_map_path, ligand_key = get_closest_event(
+        closest_event, event_map_path, ligand_key, bdc = get_closest_event(
             pandda_model_path, 
             ligand_resid, 
             pandda_dataset_dir,
@@ -393,7 +393,7 @@ def main(pandda_dataset_dir):
 
         # Uncut the event map 
         recalculated_event_map_path = pandda_dataset_dir / C.recalculated_event_map_file
-        recalculated_event_map = recalculate_event_map(event_map_path, xmap_path, mean_map_path)
+        recalculated_event_map = recalculate_event_map(event_map_path, xmap_path, mean_map_path, bdc)
         write_map(recalculated_event_map, recalculated_event_map_path)
         logger.info(f'Recaclulating event map to: {recalculated_event_map_path}')
 
