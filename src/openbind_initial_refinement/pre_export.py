@@ -329,6 +329,7 @@ def run_real_space_refine(
 
     # Get continuous subsequences
     subsequences = get_residue_sequences_around_ligand(intermediary_st_path, resid)
+    subsequences.append(ResidueSubsequence(resid.chain, resid.seqid, resid.seqid))
     logger.info(f'Got subsequences to refine: {subsequences}')
 
     # Coot refine
