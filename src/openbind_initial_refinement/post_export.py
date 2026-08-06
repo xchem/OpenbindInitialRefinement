@@ -100,7 +100,7 @@ def get_structural_model_stats():
 
 def main(path):
     # 
-    path = path.Pathlib(path)
+    path = pathlib.Path(path)
     dataset = read_dataset_from_dir(path)
     logger.info(f'Got dataset in {path}')
 
