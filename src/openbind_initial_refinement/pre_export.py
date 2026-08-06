@@ -272,7 +272,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
         print(diffs)
         discontinuity_indicies = np.where(diffs != 1)
         print(discontinuity_indicies)
-        chain_subsequences = np.split(chain_resids, discontinuity_indicies[0])
+        chain_subsequences = np.split(chain_resids, discontinuity_indicies[0]+1)
         for chain_subsequence in chain_subsequences:
             subsequences.append(
                 ResidueSubsequence(
