@@ -240,7 +240,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
     st = gemmi.read_structure(str(st_path))
 
     # Neighbour search
-    ns = gemmi.NeighborSearch(st[0], st.cell, radius)
+    ns = gemmi.NeighborSearch(st[0], st.cell, radius).populate()
 
     # For ligand atom get nearby atom resids
     resids = {}
