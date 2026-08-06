@@ -11,7 +11,7 @@ class ResID:
         return f'{self.chain}/{self.seqid}'
 
     def __hash__(self):
-        return f'{self.chain}{self.seqid}'
+        return hash(f'{self.chain}{self.seqid}')
 
 def drop_atoms(st, resids: list[ResID]) -> gemmi.Structure:
     new_st = st.clone()
