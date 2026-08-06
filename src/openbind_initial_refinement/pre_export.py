@@ -32,7 +32,7 @@ class ResidueSubsequence:
         return f'{self.chain}:{self.min}-{self.max}'
 
 class Constants:
-    real_space_refine_script = "coot-mini-rsr --pdbin {pdbin} --mapin {mapin} --dictin {dictin} --pdbout {pdbout} --chain-id {chainid} --resno-start {resnostart} --resno-end {resnoend}"
+    real_space_refine_script = "module load ccp4; coot-mini-rsr --pdbin {pdbin} --mapin {mapin} --dictin {dictin} --pdbout {pdbout} --chain-id {chainid} --resno-start {resnostart} --resno-end {resnoend}"
     process_dataset_file = 'processed_dataset.yaml'
     events_file = 'events.yaml'
     event_map_file_pattern = "{dtag}-event_{event_idx}_1-BDC_{bdc}_map.native.ccp4"
