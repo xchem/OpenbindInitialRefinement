@@ -237,7 +237,6 @@ def remove_ground_state_ligands(pdbin, output_path):
 
 def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
     # Break up the residues in a radius around ligand into continuous subsequences
-
     st = gemmi.read_structure(str(st_path))
 
     # Neighbour search
@@ -255,6 +254,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
                 print(f'Looping over ligand atoms...')
                 for atom in res:
                     neighbours = ns.find_neighbors(atom, min_dist=0.1, max_dist=radius)
+                    logger.info(f'Number of neighbours: {len(neighbours)}')
                     for mark in neighbours:
                         cra = mark.to_cra(st[0])
                         chain_name, seqid = cra.chain.name, str(cra.residue.seqid.num)
@@ -328,7 +328,7 @@ def run_real_space_refine(
     remove_ground_state_ligands(pdbin, intermediary_st_path)
 
     # Get continuous subsequences
-    subsequences = get_residue_sequences_around_ligand(pdbin, resid)
+    subsequences = get_residue_sequences_around_ligand(intermediary_st_path, resid)
     logger.info(f'Got subsequences to refine: {subsequences}')
 
     # Coot refine
