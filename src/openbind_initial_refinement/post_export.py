@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 from typing import TypedDict
 import logging
+import pathlib
 
 import numpy as np
 import gemmi
@@ -120,4 +121,9 @@ def main(path):
     ...
 
 if __name__ == "__main__":
-    ...
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        'model_building_dataset_dir'
+    )
+    args = parser.parse_args()
+    main(pathlib.Path(args.model_building_dataset_dir))
