@@ -267,11 +267,8 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
     chains = set([resid.chain for resid in resids.values()])
     for chain in chains:
         chain_resids = sorted([int(resid.seqid) for resid in resids.values() if resid.chain == chain])
-        print(chain_resids)
         diffs = np.ediff1d(chain_resids)
-        print(diffs)
         discontinuity_indicies = np.where(diffs != 1)
-        print(discontinuity_indicies)
         chain_subsequences = np.split(chain_resids, discontinuity_indicies[0]+1)
         for chain_subsequence in chain_subsequences:
             subsequences.append(
@@ -337,7 +334,7 @@ def run_real_space_refine(
         if pdbout.exists():
             pdbin = pdbout
         real_space_refine(
-            pdbin,
+            intermediary_st_path,
             mapin,
             dictin,
             pdbout,
