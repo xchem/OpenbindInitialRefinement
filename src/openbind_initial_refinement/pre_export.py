@@ -332,7 +332,7 @@ def run_real_space_refine(
     # Coot refine
     for subsequence in subsequences:
         if pdbout.exists():
-            pdbin = pdbout
+            intermediary_st_path = pdbout
         real_space_refine(
             intermediary_st_path,
             mapin,
