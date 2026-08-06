@@ -161,6 +161,8 @@ def recalculate_event_map(event_map_path, xmap_path, mean_map_path):
         r'1-BDC_([^_]+)',
         name,
     )[1])
+
+    logger.info(f'Got BDC: {bdc}')
  
     mean_map_ccp4 = gemmi.read_ccp4_map(str(mean_map_path), )
     mean_map_ccp4.setup(0.0)
