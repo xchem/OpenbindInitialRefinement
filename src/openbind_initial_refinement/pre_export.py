@@ -56,6 +56,7 @@ class Constants:
     resnames_to_ignore = [
         'LIG',
         'XXX',
+        'HOH',
         "ALA",
         "ARG",
         "ASN",
