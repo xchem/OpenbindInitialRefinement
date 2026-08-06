@@ -251,10 +251,8 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
             for res in chain:
                 if str(res.seqid.num) != resid.seqid:
                     continue
-                print(f'Looping over ligand atoms...')
                 for atom in res:
                     neighbours = ns.find_neighbors(atom, min_dist=0.1, max_dist=radius)
-                    logger.info(f'Number of neighbours: {len(neighbours)}')
                     for mark in neighbours:
                         cra = mark.to_cra(st[0])
                         chain_name, seqid = cra.chain.name, str(cra.residue.seqid.num)
@@ -272,6 +270,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
         diffs = np.ediff1d(chain_resids)
         discontinuity_indicies = np.where(diffs != 1)
         chain_subsequences = np.split(chain_resids, discontinuity_indicies)
+        print(chain_subsequences)
         for chain_subsequence in chain_subsequences:
             subsequences.append(
                 ResidueSubsequence(
