@@ -11,17 +11,11 @@ import os
 import numpy as np
 import gemmi
 
+from openbind_initial_refinement.initial_refinement import drop_atoms, ResID
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-
-@dataclasses.dataclass
-class ResID:
-    chain: str
-    seqid: str
-
-    def __repr__(self):
-        return f'{self.chain}/{self.seqid}'
 
 @dataclasses.dataclass
 class ResidueSubsequence:
@@ -31,6 +25,8 @@ class ResidueSubsequence:
 
     def __repr__(self):
         return f'{self.chain}:{self.min}-{self.max}'
+
+
 
 class Constants:
     real_space_refine_script = "module load ccp4; coot-mini-rsr --pdbin {pdbin} --mapin {mapin} --dictin {dictin} --pdbout {pdbout} --chain-id {chainid} --resno-start {resnostart} --resno-end {resnoend}"
@@ -197,23 +193,7 @@ def write_map(grid, path):
 
 
 
-def drop_atoms(st, resids: list[ResID]) -> gemmi.Structure:
-    new_st = st.clone()
-    for chain in st[0]:
-        del new_st[0][chain.name]
 
-    resids_hashable = [(resid.chain, resid.seqid) for resid in resids]
-    
-    for chain in st[0]:
-        new_chain = gemmi.Chain(chain.name)
-        for res in chain:
-            if (chain.name, str(res.seqid.num)) in resids_hashable:
-                    continue
-            else:
-                new_chain.add_residue(res)
-        new_st[0].add_chain(new_chain)
-    
-    return new_st
 
 def remove_ground_state_ligands(pdbin, output_path):
     st = gemmi.read_structure(str(pdbin))
