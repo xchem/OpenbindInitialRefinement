@@ -266,7 +266,7 @@ def get_residue_sequences_around_ligand(st_path, resid, radius=10.0):
     subsequences = []
     chains = set([resid.chain for resid in resids.values()])
     for chain in chains:
-        chain_resids = [int(resid.seqid) for resid in resids.values() if resid.chain == chain]
+        chain_resids = sorted([int(resid.seqid) for resid in resids.values() if resid.chain == chain])
         print(chain_resids)
         diffs = np.ediff1d(chain_resids)
         print(diffs)
