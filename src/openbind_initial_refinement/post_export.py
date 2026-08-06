@@ -32,10 +32,10 @@ class Dataset(TypedDict):
     reflections: gemmi.Mtz
     sfs: StructureFactors
 
-class ResID(TypedDict):
-    chain: str
-    insertion: str
-    conf: str
+# class ResID(TypedDict):
+#     chain: str
+#     insertion: str
+#     conf: str
 
 def read_structure(path) -> gemmi.Structure:
     return gemmi.read_structure(str(path))
@@ -75,7 +75,8 @@ def remove_weak_waters(dataset: Dataset, output_path, threshold: float = 1.0) ->
                 if res.name != 'HOH':
                     continue
                 for atom in res:
-                    scores[ResID(chain.name, str(res.seqid.num))] = grid.interpolate_value(atom.pos) / std
+                    resid = ResID(chain.name, str(res.seqid.num))
+                    scores[resid] = grid.interpolate_value(atom.pos) / std
 
     # Drop waters below threshold
     to_drop = [x for x in scores if scores[x] < threshold]
